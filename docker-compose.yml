@@ -1,0 +1,37 @@
+version: "3"
+services:
+ base_image:
+  build: ./base_image
+  image: base_image
+
+
+ fazumbem_api:
+   container_name: fazumbem_api
+   depends_on:
+      - "base_image"
+   build: ./api
+   image: fazumbem_api
+   environment:
+    DATABASE_URL: postgres://qdxwahauxrmzex:110e987974d83bdb6a06153c51596330d40fb162ca20c0274bee4e546be74858@ec2-3-211-48-92.compute-1.amazonaws.com:5432/d8jqfluo4tr53t
+   restart: always
+   networks:
+     fazumbem_net:
+      ipv4_address: 172.18.0.2
+   ports:
+     - "3000:3000"
+
+ fazumbem_webapp:
+   container_name: fazumbem_webapp
+   depends_on:
+      - "fazumbem_api"
+   build: ./webapp
+   image: fazumbem_webapp
+   networks:
+    fazumbem_net:
+     ipv4_address: 172.18.0.3
+networks:
+    fazumbem_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.18.0.0/16
