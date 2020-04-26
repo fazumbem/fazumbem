@@ -8,5 +8,5 @@ Obs.: Modelo criado em dbdiagram.io não é editável de forma compartilhada. O 
 
 ## Cliente PostgreSQL
 
-- DBGlass: https://github.com/web-pal/DBGlass/releases 
+- DBGlass: https://github.com/web-pal/DBGlass/releases  
   Para Heroku, preencher com credenciais encontradas em: Datastores > postgresql-octagonal-07726 > Settings > Database Credentials
