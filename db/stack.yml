@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: fazumbem
+      POSTGRES_USER: user_fazumbem
+      PGDATA: /data_volume
+    # command: pg_restore --verbose --clean --no-acl --no-owner -h localhost -U user_fazumbem -d fazumbem db_backup
+    volumes:
+      - ./data_volume:/data_volume
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
